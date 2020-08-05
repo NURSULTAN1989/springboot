@@ -1,0 +1,58 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout/main.html">
+<div layout:fragment = "theFragmentContainer">
+    <div class="row-mt-5">
+        <div class="col-sm-5 offset-2">
+
+            <form th:action="@{'/addphone'}" method="post">
+                <div class="form-group">
+                    <label th:text="#{label.name}"></label>
+                    <input type="text" class="form-control" name="name">
+                 </div>
+                <div class="form-group">
+                    <label th:text="#{label.model}"></label>
+                    <input type="text" class="form-control" name="model">
+                </div>
+                <div class="form-group">
+                    <label th:text="#{label.price}"></label>
+                    <input type="number" class="form-control" name="price">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" th:text="#{button.add}">ADD PHONE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row-mt-5">
+        <div class="col-sm-8 offset-1">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>MODEL</th>
+                    <th>PRICE</th>
+                    <th>DETAILS</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="ph:${phones}">
+                    <td th:text="${ph.id}"></td>
+                    <td th:text="${ph.name}"></td>
+                    <td th:text="${ph.model}"></td>
+                    <td th:text="${ph.price}"></td>
+                    <td>
+                        <a class="btn-btn-info" th:href="@{'/details/'+${ph.id}}" th:text="#{button.details}"></a>
+                    </td>
+                    <td>
+                        <a class="btn-btn-info" th:href="@{'/delete/'+${ph.id}}" th:text="#{button.delete}"></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</html>

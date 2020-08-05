@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout/main.html">
+<div layout:fragment = "theFragmentContainer">
+    <div class="row-mt-5">
+        <div class="col-sm-5 offset-2">
+            <h3><a href="/" th:text="#{label.home}"></a> </h3>
+
+            <form th:action="@{'/savephone'}" method="post">
+                <input type="hidden" name="id" th:value="${phone.id}">
+                <div class="form-group">
+                    <label th:text="#{label.name}"></label>
+                    <input type="text" class="form-control" name="name" th:value="${phone.name}">
+                 </div>
+                <div class="form-group">
+                    <label th:text="#{label.model}"></label>
+                    <input type="text" class="form-control" name="model" th:value="${phone.model}">
+                </div>
+                <div class="form-group">
+                    <label th:text="#{label.price}"></label>
+                    <input type="number" class="form-control" name="price" th:value="${phone.price}">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" th:text="#{button.save}"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</html>
